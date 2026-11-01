@@ -1,0 +1,47 @@
+# This file is project specification in bidisnap format
+#
+# This file contains commands that recreate the project.
+# Command format:
+#   ====== FILE "path"           — create/replace a file
+#   ====== PATCH "path"          — replace fragment(s) inside an existing file
+#   ====== DELETE "path"         — delete a file
+#   ====== MOVE "from" "to"      — rename a file
+#
+# When editing the project, provide output in this same format, in a single
+# copyable code snippet (similar to MD ```...```). Where possible, prefer
+# PATCH over full file recreation via FILE to reduce the size of changes.
+#
+# ---- Examples ----
+#
+# 1) Creating a new file (content follows until the next command):
+#
+# ====== FILE "src/hello.js"
+# console.log("hello");
+#
+# 2) Editing an existing file with PATCH. Each FIND/REPLACE section
+#    is delimited by <<<<<<< FIND, ======= and >>>>>>> REPLACE.
+#    Multiple sections may target the same file. Use PATCH with 3-5 lines
+#    of context for small edits (<50% of the file) instead of resending
+#    the whole file:
+#
+# ====== PATCH "src/hello.js"
+# <<<<<<< FIND
+# console.log("hello");
+# =======
+# console.log("hello, world");
+# >>>>>>> REPLACE
+#
+# 3) If a file's own content contains lines that look like bidisnap
+#    commands (for example, a Markdown file documenting this format),
+#    wrap its content in a delimiter. The delimiter is an arbitrary
+#    non-whitespace token. Content is everything between the opening
+#    and closing ======<delimiter> lines:
+#
+# ====== FILE "README.md"
+# ======>>>README
+# This is a file whose content includes a bidisnap example:
+# ====== FILE "example.txt"
+# ...but because we are inside a ======>>>README delimiter,
+# it is treated as content, not as a new command.
+# ======>>>README
+#

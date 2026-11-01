@@ -1,0 +1,19 @@
+{
+  "name": "bidisnap",
+  "version": "1.0.0",
+  "description": "Pack and apply project specifications in bidisnap format",
+  "main": "bidisnap.js",
+  "bin": {
+    "bidisnap": "./bidisnap.js"
+  },
+  "scripts": {
+    "test": "node test/roundtrip.js"
+  },
+  "dependencies": {
+    "diff": "^8.0.3"
+  },
+  "engines": {
+    "node": ">=13"
+  },
+  "license": "MIT"
+}

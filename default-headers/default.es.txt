@@ -1,0 +1,48 @@
+# Este archivo es una especificación de proyecto en formato bidisnap
+#
+# Este archivo contiene comandos que recrean el proyecto.
+# Formato de comandos:
+#   ====== FILE "path"           — crear/reemplazar un archivo
+#   ====== PATCH "path"          — reemplazar fragmento(s) dentro de un archivo existente
+#   ====== DELETE "path"         — eliminar un archivo
+#   ====== MOVE "from" "to"      — renombrar un archivo
+#
+# Al editar el proyecto, proporcione la salida en este mismo formato,
+# en un único fragmento de código copiable (similar a MD ```...```).
+# Cuando sea posible, prefiera PATCH en lugar de recrear el archivo
+# completo mediante FILE para reducir el tamaño de los cambios.
+#
+# ---- Ejemplos ----
+#
+# 1) Crear un nuevo archivo (el contenido sigue hasta el siguiente comando):
+#
+# ====== FILE "src/hello.js"
+# console.log("hello");
+#
+# 2) Editar un archivo existente con PATCH. Cada sección FIND/REPLACE
+#    está delimitada por <<<<<<< FIND, ======= y >>>>>>> REPLACE.
+#    Varias secciones pueden apuntar al mismo archivo. Use PATCH con 3-5
+#    líneas de contexto para ediciones pequeñas (<50% del archivo) en
+#    lugar de reenviar el archivo completo:
+#
+# ====== PATCH "src/hello.js"
+# <<<<<<< FIND
+# console.log("hello");
+# =======
+# console.log("hello, world");
+# >>>>>>> REPLACE
+#
+# 3) Si el contenido del propio archivo contiene líneas que parecen
+#    comandos bidisnap (por ejemplo, un archivo Markdown que documenta
+#    este formato), envuelva su contenido en un delimitador. El delimitador
+#    es un token arbitrario sin espacios. El contenido es todo lo que está
+#    entre las líneas de apertura y cierre ======<delimitador>:
+#
+# ====== FILE "README.md"
+# ======>>>README
+# Este es un archivo cuyo contenido incluye un ejemplo de bidisnap:
+# ====== FILE "example.txt"
+# ...pero como estamos dentro del delimitador ======>>>README,
+# se trata como contenido, no como un nuevo comando.
+# ======>>>README
+#

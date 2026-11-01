@@ -1,0 +1,48 @@
+# Bu dosya bidisnap formatında proje spesifikasyonudur
+#
+# Bu dosya projeyi yeniden oluşturan komutları içerir.
+# Komut formatı:
+#   ====== FILE "path"           — dosya oluştur/değiştir
+#   ====== PATCH "path"          — mevcut bir dosya içindeki parçaları değiştir
+#   ====== DELETE "path"         — dosyayı sil
+#   ====== MOVE "from" "to"      — dosyayı yeniden adlandır
+#
+# Projeyi düzenlerken, çıktıyı aynı formatta, tek bir kopyalanabilir
+# kod parçacığı (MD ```...``` benzeri) içinde sağlayın. Mümkün olduğunda,
+# değişikliklerin boyutunu azaltmak için FILE ile dosyanın tamamını yeniden
+# oluşturmak yerine PATCH kullanmayı tercih edin.
+#
+# ---- Örnekler ----
+#
+# 1) Yeni bir dosya oluşturma (içerik bir sonraki komuta kadar devam eder):
+#
+# ====== FILE "src/hello.js"
+# console.log("hello");
+#
+# 2) PATCH ile mevcut bir dosyayı düzenleme. Her FIND/REPLACE bölümü
+#    <<<<<<< FIND, ======= ve >>>>>>> REPLACE satırlarıyla sınırlandırılır.
+#    Aynı dosyaya birden fazla bölüm uygulanabilir. Küçük düzenlemeler
+#    için (<dosyanın %50'si), tüm dosyayı yeniden göndermek yerine
+#    3-5 satır bağlam içeren PATCH kullanın:
+#
+# ====== PATCH "src/hello.js"
+# <<<<<<< FIND
+# console.log("hello");
+# =======
+# console.log("hello, world");
+# >>>>>>> REPLACE
+#
+# 3) Dosyanın kendi içeriği bidisnap komutlarına benzeyen satırlar
+#    içeriyorsa (örneğin bu formatı belgeleyen bir Markdown dosyası),
+#    içeriğini bir ayırıcı ile sarın. Ayırıcı, boşluk içermeyen
+#    herhangi bir belirteçtir. İçerik, açılış ve kapanış
+#    ======<ayırıcı> satırları arasındaki her şeydir:
+#
+# ====== FILE "README.md"
+# ======>>>README
+# Bu, içeriği bir bidisnap örneği içeren bir dosyadır:
+# ====== FILE "example.txt"
+# ...ancak ======>>>README ayırıcısının içinde olduğumuz için,
+# bu yeni bir komut değil, içerik olarak değerlendirilir.
+# ======>>>README
+#
